@@ -1,0 +1,29 @@
+<div class="container">
+<h2><span class="badge badge-success">Cart</span></h2>
+<table class="table table-dark">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Price</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% total_price = 0%>
+  <% @cartitems.each do |item| %>
+    <tr>
+      <th scope="row"><%= item.id %></th>
+      <td><%= item.title %></td>
+      <td><%= item.price %>/-</td>
+      <td><%= link_to "Remove", remove_from_cart_path(item),method: :delete, data: {confirm: "Are you sure?"},class:"btn btn-sm btn-outline-danger" %></td>
+    </tr>
+    <% total_price = total_price + item.price %>
+    <% end %>
+  </tbody>
+</table>
+<div class="container">
+<button type="button" class="btn btn-outline-success btn-sm float-right">CHECKOUT</button>
+<h3><span class="badge badge-secondary float-right">Cart Total: <%=total_price %></span></h3>
+</div>
+</div>
